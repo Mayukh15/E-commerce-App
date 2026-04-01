@@ -1,0 +1,36 @@
+import React from "react";
+import { Card, CardContent, CardFooter } from "../ui/card";
+import { Label } from "../ui/label";
+import { Button } from "../ui/button";
+import { useDispatch } from "react-redux";
+
+const AddressCard = ({
+  addressInfo,
+  handleDeleteAddress,
+  handleEditAddress,
+  setCurrentSelectedAddress,
+}) => {
+  return (
+    <Card
+      onClick={
+        setCurrentSelectedAddress
+          ? () => setCurrentSelectedAddress(addressInfo)
+          : null
+      }
+    >
+      <CardContent className="grid p-4 gap-4">
+        <Label>Address: {addressInfo?.address}</Label>
+        <Label>City: {addressInfo?.city}</Label>
+        <Label>Phone: {addressInfo?.phone}</Label>
+        <Label>PinCode: {addressInfo?.pincode}</Label>
+        <Label>Notes: {addressInfo?.notes}</Label>
+      </CardContent>
+      <CardFooter className="p-3 flex justify-between">
+        <Button onClick={() => handleEditAddress(addressInfo)}>Edit</Button>
+        <Button onClick={() => handleDeleteAddress(addressInfo)}>Delete</Button>
+      </CardFooter>
+    </Card>
+  );
+};
+
+export default AddressCard;
